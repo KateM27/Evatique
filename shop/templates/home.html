@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content%}
+<div class="col-12 col-md-5 mx-auto text-center">
+    <form method="get" action="{% url 'home' %}">
+        <div class="input-group mb-3">
+            <input name="query" class="form-control rounded-xl" type="text" value="{{ query }}" placeholder="Search categories and products">
+            <button class="btn btn-dark rounded-xl" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-3 mx-auto">
+            <div class="p-5 mt-4">
+                <p><strong>CATEGORY</strong></p>
+                <ul class="list-unstyled">
+
+                {% for category in categories %}
+                    <li class="rounded-xl{% if category.id == category_id %} bg-tertiary-subtle-200{% endif %}">
+                    <a href="{% url 'home' %}?query={{ query }}&category={{ category.id }}" class="list-group-item list-group-item-action">{{ category.name }}</a><br>
+                    </li>
+                {% endfor %}
+                </ul>
+                <a href="{% url 'home' %}">
+                <button class="btn btn-dark rounded-xl" type="submit">Clear filters</button></a>
+            </div>
+        </div>
+
+        <div id="products" class="col-lg-9 mx-auto">
+            <div class="row">
+                
+                {% for product in products %}
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
+                    <a href="{% url 'detail' product.id %}" class="text-decoration-none">
+                        <div class="border rounded p-3">
+                            <img src="{{ product.image.url }}" class="img-fluid rounded-xl" alt="Product Image">
+                        </div>
+                            <div class="text-center mt-2">
+                                <h6 class="m-0 text-dark">{{ product.name }}</h6>
+                                <p class="text-dark"><b>{{ product.price }}</b></p>
+                            </div>  
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

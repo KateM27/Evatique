@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{{ product.image.url }}" class="img-fluid rounded-xl" alt="Product Image">
+        </div>
+        <div class="col-md-4 bg-gray-100 rounded-xl">
+            <h2 class="mb-4">{{ product.name }}</h2>
+            <p><strong>Price: </strong>{{ product.price }}</p>
+            <p><strong>Description: </strong>{{ product.description }}</p>
+            <form method="post" action="{% url 'cart' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <a href="{% url 'cart' %}" class="btn btn-primary btn-lg mt-4" role="button">Add to Cart</a>
+                <!-- <button type="submit" class="btn btn-primary">Add to Cart</button> -->
+            </form>
+            
+        </div>
+    </div>
+</div>
+<div id="products" class="col-lg-9 mx-auto">
+    <div class="row">
+        <h2 class="mb-5">Related products</h2>
+        
+        {% for product in related_products %}
+        <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
+            <a href="{% url 'detail' product.id %}" class="text-decoration-none">
+                <div class="border rounded p-3">
+                    <img src="{{ product.image.url }}" class="img-fluid rounded-xl" alt="Product Image">
+                </div>
+                    <div class="text-center mt-2">
+                        <h6 class="m-0 text-dark">{{ product.name }}</h6>
+                        <p class="text-dark"><b>{{ product.price }}</b></p>
+                    </div>  
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

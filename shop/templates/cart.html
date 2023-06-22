@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+<div class="container">
+   <div class="border rounded p-4 m-4">
+        <p class="display-4 pl-4 ml-4 btn btn-success rounded-pill">My Cart</p>
+        <hr>
+        {% for item in cart_items %}
+  <div class="cart-item">
+    <h3>{{ item.product.name }}</h3>
+    <p>Price: {{ item.product.price }}</p>
+    <p>Quantity: {{ item.quantity }}</p>
+    <p>Subtotal: {{ item.subtotal }}</p>
+  </div>
+{% endfor %}
+<p>Total: {{ total }}</p>
+<form method="post" action="{% url 'place_order' %}">
+  {% csrf_token %}
+  <button type="submit">Place Order</button>
+</form>
+
+{% endblock %}
