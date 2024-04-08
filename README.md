@@ -1,16 +1,21 @@
-# E-commerce Webside
+## E-commerce Webside
 
-This is a online shop for users to buy goods.
+### Online shop for clothes and cosmetics
 
 ## Technology stack
 
-Django and SQLite3(comes by default with Django)
-HTML5, Bootstrap, JS
+### Django and SQLite
 
-## Capabilities (for now)
+### HTML5, Bootstrap, JS
 
-Users sign up or login, if already signed up, and also logout
-Users view items
-Users search for products
-Users can follow the shop on social media handles provided at the bottom of the page
+## Basic functionality
 
+### New users sign up
+
+### If already signed up, users login and logout
+
+### view products
+
+### search for products using filters
+
+### Users sign up or login, if already signed up, and also logout
