@@ -14,8 +14,8 @@
 
 ### If already signed up, users login and logout
 
-### view products
+### View products
 
-### search for products using filters
+### Search for products using filters
 
-### Users sign up or login, if already signed up, and also logout
+### Contact the shop using social media handles provided
